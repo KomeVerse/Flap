@@ -34,7 +34,7 @@
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none}
 html,body{width:100%;height:100%;overflow:hidden;background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.logo{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:calc(14px + env(safe-area-inset-left,0px));z-index:10;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.45);padding:6px 14px 6px 8px;border-radius:30px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);pointer-events:none}
+.logo{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:calc(14px + env(safe-area-inset-left,0px));z-index:10;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.45);padding:6px 14px 6px 8px;border-radius:30px;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);pointer-events:auto;text-decoration:none;cursor:pointer}
 .logo i{width:36px;height:36px;border-radius:50%;background-color:#FABB05;background-image:radial-gradient(circle at 19.7px 9.9px,#EA4A3B 3.4px,transparent 3.5px);-webkit-mask-image:radial-gradient(circle at 30.2px 8.9px,transparent 18px,#000 18.1px),radial-gradient(circle at 22.8px -8.8px,#000 29.7px,transparent 29.8px);mask-image:radial-gradient(circle at 30.2px 8.9px,transparent 18px,#000 18.1px),radial-gradient(circle at 22.8px -8.8px,#000 29.7px,transparent 29.8px);flex-shrink:0}
 .logo b{color:#fff;font-weight:800;font-size:15px;letter-spacing:.6px;text-transform:uppercase;text-shadow:0 2px 4px rgba(0,0,0,.5)}
 #hud{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));z-index:10;display:flex;gap:6px}
@@ -52,7 +52,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 @media(max-width:560px){.btn{padding:0 10px;font-size:12px;gap:4px}.btn .ic{display:none}.dotbtn{padding:0}}@media(max-width:420px){.logo b{display:none}.logo{padding:6px 8px}}
 @media(prefers-reduced-motion:reduce){#toast{transition:none}}
 </style></head><body>
-<div class="logo"><i></i><b>Kome Flap</b></div>
+<a class="logo" href="https://komestudio.com" target="_blank" rel="noopener" aria-label="Kome Studio"><i></i><b>Kome Flap</b></a>
 <div id="hud">
  <div class="dd" id="ddMap"><button class="btn"><span class="ic">🗺️</span><span id="lMap">Day</span> ▾</button><div class="menu"><div id="mMap"></div></div></div>
  <div class="dd" id="ddSkin"><button class="btn"><span class="ic">🐤</span><span id="lSkin">Cute</span> ▾</button><div class="menu"><div id="mSkin"></div></div></div>
@@ -234,7 +234,7 @@ function startRun(){kids=kidsNext;state=PLAY;score=0;playF=0;pipes.list=[];pipes
  Object.assign(bird,{y:VH/2,vy:0,rot:0,inv:0,lives:kids?3:1,g:kids?.3:.38,jp:kids?-6.3:-6.8});flap()}
 function act(){snd.init();if(state===PLAY)flap();else if(state===MENU||performance.now()-overAt>500)startRun()}
 addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();act()}});
-addEventListener('pointerdown',e=>{if(e.target.closest('#hud,#hud2'))return;e.preventDefault();act()});
+addEventListener('pointerdown',e=>{if(e.target.closest('#hud,#hud2,.logo'))return;e.preventDefault();act()});
 
 /* ---------- Menus ---------- */
 function buildMenus(){
